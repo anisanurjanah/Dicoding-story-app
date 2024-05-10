@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">DicodingStoryApp</string>
-
-
+    <string name="story">Story</string>
+    <string name="dicoding_story">DICODING STORY</string>
+    <string name="story_not_available">Story not available.</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">LOGIN</string>
+    <string name="story_login">STORY</string>
+    <string name="login_title">Unlock your creativity with</string>
+    <string name="login_description">Start sharing your story! Please log in to begin your journey.</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="signup_title">Join %1$s today and unleash your storytelling potential!</string>
+    <string name="signup_description">Create an account now and start crafting your own narrative. Your adventure awaits!</string>
+    <string name="name">Name</string>
 </resources>
