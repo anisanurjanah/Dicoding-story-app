@@ -18,4 +18,8 @@ class DetailStoryActivity : AppCompatActivity() {
             insets
         }
     }
+
+    companion object {
+        const val EXTRA_RESULT = "extra_result"
+    }
 }
