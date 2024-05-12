@@ -11,16 +11,22 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anisanurjanah.dicodingstoryapp.R
 import com.anisanurjanah.dicodingstoryapp.data.Result
 import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.databinding.ActivityMainBinding
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
+import com.anisanurjanah.dicodingstoryapp.view.addstory.AddStoryActivity
 import com.anisanurjanah.dicodingstoryapp.view.detailstory.DetailStoryActivity
+import com.anisanurjanah.dicodingstoryapp.view.login.LoginActivity
+import com.anisanurjanah.dicodingstoryapp.view.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var mainViewModel: MainViewModel
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(SESSION)
 
@@ -29,27 +35,48 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupStories()
+        mainViewModel = obtainViewModel(this@MainActivity)
 
+        setupBar()
+        setupStories()
+        setupAction()
+    }
+
+    private fun setupBar() {
+        with(binding) {
+            topAppBar.inflateMenu(R.menu.option_menu)
+            topAppBar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_settings -> {
+                        moveToSetting()
+                        true
+                    }
+                    R.id.menu_logout -> {
+                        moveToLogin()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
+    }
+
+    private fun setupAction() {
+        binding.fabButton.setOnClickListener { moveToAddNewStory() }
     }
 
     private fun setupStories() {
         val storyAdapter = StoryAdapter()
-        binding.rvStories.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            setHasFixedSize(true)
-            adapter = storyAdapter
-        }
+
+        binding.rvStories.layoutManager = LinearLayoutManager(this@MainActivity)
+        binding.rvStories.adapter = storyAdapter
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
             override fun onItemClicked(data: StoryItem?) {
-                val intent = Intent(this@MainActivity, DetailStoryActivity::class.java)
-                intent.putExtra(DetailStoryActivity.EXTRA_RESULT, data)
-                startActivity(intent)
+                moveToDetailStory(data)
             }
         })
 
-        val mainViewModel = obtainViewModel(this@MainActivity)
         mainViewModel.stories.observe(this) {
             if (it != null) {
                 when (it) {
@@ -78,6 +105,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun moveToDetailStory(item: StoryItem?) {
+        val intent = Intent(this@MainActivity, DetailStoryActivity::class.java)
+        intent.putExtra(DetailStoryActivity.EXTRA_RESULT, item)
+        startActivity(intent)
+    }
+
+    private fun moveToAddNewStory() {
+        startActivity(Intent(this@MainActivity, AddStoryActivity::class.java))
+    }
+
+    private fun moveToSetting() {
+        startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+    }
+
+    private fun moveToLogin() {
+        mainViewModel.logout()
+        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
     }
 
     private fun showToast(message: String) {

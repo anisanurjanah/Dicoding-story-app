@@ -15,6 +15,10 @@ import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiConfig
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.File
 
@@ -96,13 +100,28 @@ class StoryRepository private constructor(
             val token = getToken()
             apiService = ApiConfig.getApiService(token.toString())
 
+
+
+
+//            val filePart = if (file != null) {
+//                val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+//                MultipartBody.Part.createFormData("file", file.name, requestFile)
+//            } else {
+//                null
+//            }
+//
+//            val descriptionPart = description.toRequestBody("text/plain".toMediaTypeOrNull())
+//
+//            val response = apiService.uploadNewStory(filePart!!, descriptionPart)
+
+//            emit((Result.Success(response)))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, GeneralResponse::class.java)
 
             emit(Result.Error(errorResponse.message.toString()))
         } catch (e: Exception) {
-            Log.d(TAG, "getAllStories: ${e.message}")
+            Log.d(TAG, "uploadNewStory: ${e.message}")
 
             emit(Result.Error(e.message.toString()))
         }

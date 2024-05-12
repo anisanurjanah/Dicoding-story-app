@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +19,12 @@
         android:theme="@style/Base.Theme.DicodingStoryApp"
         tools:targetApi="31">
         <activity
+            android:name=".view.camera.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.setting.SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.addstory.AddStoryActivity"
             android:exported="false" />
         <activity
@@ -22,7 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".view.register.RegisterActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true">
@@ -34,8 +44,7 @@
         </activity>
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

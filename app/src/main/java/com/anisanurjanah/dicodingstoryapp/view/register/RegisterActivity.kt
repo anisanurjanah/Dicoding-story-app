@@ -41,9 +41,11 @@ class RegisterActivity : AppCompatActivity() {
         setupButton()
 
         showLoading(false)
-        binding.signupButton.setOnClickListener {
-            setupRegister()
-        }
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.signupButton.setOnClickListener { setupRegister() }
     }
 
     private fun setupTitle() {

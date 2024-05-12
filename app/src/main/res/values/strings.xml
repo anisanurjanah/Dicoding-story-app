@@ -1,27 +1,50 @@
 <resources>
     <string name="app_name">DicodingStoryApp</string>
+
     <string name="story">STORY</string>
     <string name="dicoding_story">DICODING STORY</string>
-    <string name="story_not_available">Story not available.</string>
+
+    <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+
     <string name="login">LOGIN</string>
     <string name="login_title">Unlock your creativity with</string>
     <string name="login_description">Start sharing your story! Please log in to begin your journey.</string>
+
     <string name="sign_up">SIGN UP</string>
     <string name="signup_title">Join %1$s today and unleash your storytelling potential!</string>
     <string name="signup_description">Create an account now and start crafting your own narrative. Your adventure awaits!</string>
-    <string name="name">Name</string>
+
     <string name="login_to_signup">Don\'t have an account yet? %1$s and start sharing your stories with us!</string>
     <string name="signup_now">Sign up now</string>
     <string name="signup_to_login">Already have an account? %1$s and continue your storytelling journey with us!</string>
     <string name="login_now">Log in now</string>
+
     <string name="empty_name">Please enter your name address to proceed.</string>
     <string name="empty_email">Please enter your email address to proceed.</string>
     <string name="empty_password">Please enter your password to proceed.</string>
+
     <string name="register_success">Congratulations! Your account has been successfully created.</string>
     <string name="register_message">You can now log in and start exploring our platform. \n Press \'Continue\' to proceed to the login page.</string>
     <string name="continue_login">Continue</string>
-    <string name="not_available">Not available</string>
-    <string name="failed_to_load_data">Failed to load data</string>
+
+    <string name="logout_bar">Logout</string>
+    <string name="setting_bar">Setting</string>
+
+    <string name="description">Description</string>
+    <string name="upload">Upload</string>
+
+    <string name="choose_from_gallery">Choose from gallery</string>
+
+    <!-- Failed Condition  -->
+    <string name="not_available">Not available.</string>
+    <string name="story_not_available">Story not available.</string>
+    <string name="failed_to_load_data">Failed to load data.</string>
+    <string name="no_media_selected">No media selected</string>
+    <string name="permission_request_granted">Permission request granted.</string>
+    <string name="permission_request_denied">Permission request denied.</string>
+    <string name="failed_to_show_camera">Failed to show camera.</string>
+    <string name="successfully_take_pictures">Successfully take pictures.</string>
+    <string name="failed_to_take_pictures">Failed to take pictures.</string>
 </resources>

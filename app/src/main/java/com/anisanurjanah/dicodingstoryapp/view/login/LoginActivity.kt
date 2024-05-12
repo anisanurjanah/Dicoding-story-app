@@ -41,9 +41,11 @@ class LoginActivity : AppCompatActivity() {
         setupButton()
 
         showLoading(false)
-        binding.loginButton.setOnClickListener {
-            setupLogin()
-        }
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.loginButton.setOnClickListener { setupLogin() }
     }
 
     private fun setupTitle() {
