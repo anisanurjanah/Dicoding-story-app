@@ -22,4 +22,6 @@
     <string name="register_success">Congratulations! Your account has been successfully created.</string>
     <string name="register_message">You can now log in and start exploring our platform. \n Press \'Continue\' to proceed to the login page.</string>
     <string name="continue_login">Continue</string>
+    <string name="not_available">Not available</string>
+    <string name="failed_to_load_data">Failed to load data</string>
 </resources>
