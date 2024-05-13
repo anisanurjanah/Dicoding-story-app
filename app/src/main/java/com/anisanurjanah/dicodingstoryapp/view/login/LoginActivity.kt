@@ -12,6 +12,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.anisanurjanah.dicodingstoryapp.R
 import com.anisanurjanah.dicodingstoryapp.data.Result
 import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
@@ -27,10 +29,14 @@ import com.anisanurjanah.dicodingstoryapp.databinding.ActivityLoginBinding
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
 import com.anisanurjanah.dicodingstoryapp.view.main.MainActivity
 import com.anisanurjanah.dicodingstoryapp.view.register.RegisterActivity
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+
+    private lateinit var userPreference: UserPreference
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(SESSION)
 
@@ -39,12 +45,26 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showLoading(false)
-        setupAnimation()
-        setupTitle()
-        setupButton()
-        setupAction()
-        setupAccessibility()
+        userPreference = UserPreference.getInstance(dataStore)
+        lifecycleScope.launch {
+            try {
+                userPreference.isLoggedIn().collect { isLoggedIn ->
+                    if (isLoggedIn == true) {
+                        moveToMain()
+                    } else {
+                        showLoading(false)
+                        setupAnimation()
+                        setupTitle()
+                        setupButton()
+                        setupAction()
+                        setupAccessibility()
+                    }
+                }
+            } catch (_: CancellationException) {
+            } catch (e: Exception) {
+                Log.e("LoginActivity", "Error in collecting user login status", e)
+            }
+        }
     }
 
     private fun setupAction() {
@@ -180,6 +200,11 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun moveToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun showToast(message: String) {

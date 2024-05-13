@@ -166,6 +166,5 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val SESSION = "session"
-//        const val SETTING = "settings"
     }
 }

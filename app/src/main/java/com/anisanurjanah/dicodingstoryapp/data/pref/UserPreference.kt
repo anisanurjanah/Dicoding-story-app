@@ -14,6 +14,9 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[STATE_KEY] = true
         }
     }
+    fun isLoggedIn(): Flow<Boolean?> = dataStore.data.map { preferences ->
+        preferences[STATE_KEY]
+    }
     fun getToken(): Flow<String?> = dataStore.data.map { preferences ->
         preferences[TOKEN_KEY]
     }
