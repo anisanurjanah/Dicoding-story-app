@@ -21,11 +21,22 @@ class DetailStoryActivity : AppCompatActivity() {
         @Suppress("DEPRECATION")
         val result = intent.getParcelableExtra<StoryItem>(EXTRA_RESULT)
         if (result != null) {
+            setupToolbar(result)
             setupDetailStory(result)
         } else {
             showToast(getString(R.string.failed_to_load_data))
         }
+    }
 
+    private fun setupToolbar(item: StoryItem) {
+        with(binding) {
+            topAppBar.title = getString(R.string.s_story, item.name)
+
+            topAppBar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+            topAppBar.setNavigationOnClickListener {
+                finish()
+            }
+        }
     }
 
     private fun setupDetailStory(items: StoryItem) {

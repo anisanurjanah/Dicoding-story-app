@@ -1,5 +1,7 @@
 package com.anisanurjanah.dicodingstoryapp.view.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
@@ -37,15 +39,35 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        showLoading(false)
+        setupAnimation()
         setupTitle()
         setupButton()
-
-        showLoading(false)
         setupAction()
     }
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener { setupLogin() }
+    }
+
+    private fun setupAnimation() {
+        ObjectAnimator.ofFloat(binding.dicodingImage, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
+        val loginTitle = ObjectAnimator.ofFloat(binding.loginTitle, View.ALPHA, 1f).setDuration(100)
+        val loginDescription = ObjectAnimator.ofFloat(binding.loginDescription, View.ALPHA, 1f).setDuration(100)
+        val edEmail = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val edPassword = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val loginButton = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
+        val registerButton = ObjectAnimator.ofFloat(binding.registerButton, View.ALPHA, 1f).setDuration(100)
+
+        AnimatorSet().apply {
+            playSequentially(loginTitle, loginDescription, edEmail, edPassword, loginButton, registerButton)
+            start()
+        }
     }
 
     private fun setupTitle() {
@@ -124,8 +146,10 @@ class LoginActivity : AppCompatActivity() {
                             is Result.Success -> {
                                 showLoading(false)
 
-                                val loginResult = it.data
-                                loginViewModel.saveLoginState(loginResult.token.toString())
+                                val response = it.data
+
+                                loginViewModel.saveLoginState(response.token.toString())
+                                showToast(getString(R.string.successfully_logged_in))
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

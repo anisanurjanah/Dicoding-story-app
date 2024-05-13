@@ -12,9 +12,11 @@ import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResult
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoriesResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiConfig
+import com.anisanurjanah.dicodingstoryapp.utils.reduceFileImage
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -97,24 +99,21 @@ class StoryRepository private constructor(
     fun uploadNewStory(file: File?, description: String): LiveData<Result<GeneralResponse>> = liveData {
         emit(Result.Loading)
         try {
-            val token = getToken()
-            apiService = ApiConfig.getApiService(token.toString())
+            val imageFile = reduceFileImage(file!!)
+            Log.d("Image File", "showImage: ${imageFile.path}")
 
+            val descriptionBody = description.toRequestBody("text/plain".toMediaType())
+            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
 
+            val multipartBody = MultipartBody.Part.createFormData(
+                "photo",
+                imageFile.name,
+                requestImageFile
+            )
 
+            val response = apiService.uploadNewStory(multipartBody, descriptionBody)
 
-//            val filePart = if (file != null) {
-//                val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-//                MultipartBody.Part.createFormData("file", file.name, requestFile)
-//            } else {
-//                null
-//            }
-//
-//            val descriptionPart = description.toRequestBody("text/plain".toMediaTypeOrNull())
-//
-//            val response = apiService.uploadNewStory(filePart!!, descriptionPart)
-
-//            emit((Result.Success(response)))
+            emit((Result.Success(response)))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, GeneralResponse::class.java)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -16,6 +17,7 @@ import com.anisanurjanah.dicodingstoryapp.data.Result
 import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.databinding.ActivityMainBinding
+import com.anisanurjanah.dicodingstoryapp.databinding.ItemStoryBinding
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
 import com.anisanurjanah.dicodingstoryapp.view.addstory.AddStoryActivity
 import com.anisanurjanah.dicodingstoryapp.view.detailstory.DetailStoryActivity
@@ -37,12 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel = obtainViewModel(this@MainActivity)
 
-        setupBar()
+        setupToolbar()
         setupStories()
         setupAction()
     }
 
-    private fun setupBar() {
+    private fun setupToolbar() {
         with(binding) {
             topAppBar.inflateMenu(R.menu.option_menu)
             topAppBar.setOnMenuItemClickListener { menuItem ->
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
             override fun onItemClicked(data: StoryItem?) {
-                moveToDetailStory(data)
+                moveToDetailStory(data, ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle())
             }
         })
 
@@ -86,16 +88,16 @@ class MainActivity : AppCompatActivity() {
                     is Result.Success -> {
                         showLoading(false)
 
-                        val storyItem = it.data
+                        val response = it.data
 
-                        if (storyItem.isEmpty()) {
+                        if (response.isEmpty()) {
                             binding.rvStories.visibility = View.GONE
                             binding.storyNotAvailable.visibility = View.VISIBLE
                         } else {
                             binding.rvStories.visibility = View.VISIBLE
                             binding.storyNotAvailable.visibility = View.GONE
 
-                            storyAdapter.submitList(storyItem)
+                            storyAdapter.submitList(response)
                         }
                     }
                     is Result.Error -> {
@@ -107,10 +109,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToDetailStory(item: StoryItem?) {
+    private fun moveToDetailStory(item: StoryItem?, bundle: Bundle?) {
         val intent = Intent(this@MainActivity, DetailStoryActivity::class.java)
         intent.putExtra(DetailStoryActivity.EXTRA_RESULT, item)
-        startActivity(intent)
+        startActivity(intent, bundle)
     }
 
     private fun moveToAddNewStory() {
@@ -123,7 +125,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun moveToLogin() {
         mainViewModel.logout()
+        showToast(getString(R.string.successfully_logged_out))
         startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+        finish()
     }
 
     private fun showToast(message: String) {
@@ -140,6 +144,10 @@ class MainActivity : AppCompatActivity() {
             UserPreference.getInstance(dataStore)
         )
         return ViewModelProvider(activity, factory)[MainViewModel::class.java]
+    }
+    override fun onResume() {
+        super.onResume()
+        setupStories()
     }
 
     companion object {

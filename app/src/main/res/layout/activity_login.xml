@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".view.login.LoginActivity">
 
     <ImageView
@@ -42,8 +43,10 @@
         android:layout_marginEnd="24dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/story"
-        android:textColor="?attr/colorOnPrimary"
         android:textSize="20sp"
+        android:textColor="?attr/colorOnPrimary"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dicodingImage" />
@@ -59,6 +62,8 @@
         android:text="@string/login_description"
         android:textSize="16sp"
         android:textColor="@color/grey"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTitle" />
@@ -71,6 +76,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginDescription"
@@ -98,6 +105,8 @@
         android:layout_marginEnd="24dp"
         app:endIconMode="password_toggle"
         app:endIconTint="?attr/colorPrimary"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
@@ -126,6 +135,8 @@
         android:text="@string/login"
         android:textSize="16sp"
         android:textColor="?attr/colorOnSecondary"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
@@ -143,6 +154,8 @@
         android:textColor="@color/grey"
         android:textAllCaps="false"
         android:textAlignment="center"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />

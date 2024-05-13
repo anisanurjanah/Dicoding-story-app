@@ -52,7 +52,7 @@ class StoryAdapter : ListAdapter<StoryItem, StoryAdapter.ListViewHolder>(DIFF_CA
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: StoryItem?)
+        fun onItemClicked(items: StoryItem?)
     }
 
     companion object {
