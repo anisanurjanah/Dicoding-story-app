@@ -17,7 +17,6 @@ import com.anisanurjanah.dicodingstoryapp.data.Result
 import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.databinding.ActivityMainBinding
-import com.anisanurjanah.dicodingstoryapp.databinding.ItemStoryBinding
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
 import com.anisanurjanah.dicodingstoryapp.view.addstory.AddStoryActivity
 import com.anisanurjanah.dicodingstoryapp.view.detailstory.DetailStoryActivity
