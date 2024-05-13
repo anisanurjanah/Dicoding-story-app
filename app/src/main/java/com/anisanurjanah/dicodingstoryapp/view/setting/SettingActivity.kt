@@ -1,12 +1,10 @@
 package com.anisanurjanah.dicodingstoryapp.view.setting
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.anisanurjanah.dicodingstoryapp.R
-import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {
@@ -19,7 +17,8 @@ class SettingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupToolbar()
-
+        setupAction()
+        setupAccessibility()
     }
 
     private fun setupToolbar() {
@@ -31,5 +30,20 @@ class SettingActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun setupAction() {
+        binding.languageButton.setOnClickListener { moveToLanguage() }
+    }
+
+    private fun setupAccessibility() {
+        binding.apply {
+            topAppBar.contentDescription = getString(R.string.navigation_and_actions)
+            languageButton.contentDescription = getString(R.string.change_language)
+        }
+    }
+
+    private fun moveToLanguage() {
+        startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
     }
 }

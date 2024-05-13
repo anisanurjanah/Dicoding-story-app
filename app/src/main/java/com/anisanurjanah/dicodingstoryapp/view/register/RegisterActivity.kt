@@ -44,10 +44,24 @@ class RegisterActivity : AppCompatActivity() {
         setupTitle()
         setupButton()
         setupAction()
+        setupAccessibility()
     }
 
     private fun setupAction() {
         binding.signupButton.setOnClickListener { setupRegister() }
+    }
+
+    private fun setupAccessibility() {
+        binding.apply {
+            dicodingImage.contentDescription = getString(R.string.dicoding_s_logo)
+            storyLogo.contentDescription = getString(R.string.title_of_dicoding_logo)
+            signupTitle.contentDescription = getString(R.string.title_of_signup)
+            signupDescription.contentDescription = getString(R.string.description_of_signup)
+            emailEditTextLayout.contentDescription = getString(R.string.email_input_field)
+            passwordEditTextLayout.contentDescription = getString(R.string.password_input_field)
+            signupButton.contentDescription = getString(R.string.sign_up_button)
+            loginButton.contentDescription = getString(R.string.login_button)
+        }
     }
 
     private fun setupAnimation() {
@@ -57,6 +71,7 @@ class RegisterActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
+        val storyLogo = ObjectAnimator.ofFloat(binding.storyLogo, View.ALPHA, 1f).setDuration(100)
         val signupTitle = ObjectAnimator.ofFloat(binding.signupTitle, View.ALPHA, 1f).setDuration(100)
         val signupDescription = ObjectAnimator.ofFloat(binding.signupDescription, View.ALPHA, 1f).setDuration(100)
         val edName = ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(100)
@@ -66,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
         val loginButton = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
-            playSequentially(signupTitle, signupDescription, edName, edEmail, edPassword, signupButton, loginButton)
+            playSequentially(storyLogo, signupTitle, signupDescription, edName, edEmail, edPassword, signupButton, loginButton)
             start()
         }
     }

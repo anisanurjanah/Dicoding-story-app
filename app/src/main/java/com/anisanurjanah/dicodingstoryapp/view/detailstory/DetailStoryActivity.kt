@@ -23,6 +23,7 @@ class DetailStoryActivity : AppCompatActivity() {
         if (result != null) {
             setupToolbar(result)
             setupDetailStory(result)
+            setupAccessibility()
         } else {
             showToast(getString(R.string.failed_to_load_data))
         }
@@ -36,6 +37,16 @@ class DetailStoryActivity : AppCompatActivity() {
             topAppBar.setNavigationOnClickListener {
                 finish()
             }
+        }
+    }
+
+    private fun setupAccessibility() {
+        binding.apply {
+            topAppBar.contentDescription = getString(R.string.navigation_and_actions)
+            storyImage.contentDescription = getString(R.string.story_image)
+            storyName.contentDescription = getString(R.string.story_name)
+            storyDate.contentDescription = getString(R.string.story_date)
+            storyDescription.contentDescription = getString(R.string.story_description)
         }
     }
 

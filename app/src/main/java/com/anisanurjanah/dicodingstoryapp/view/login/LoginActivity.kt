@@ -44,10 +44,24 @@ class LoginActivity : AppCompatActivity() {
         setupTitle()
         setupButton()
         setupAction()
+        setupAccessibility()
     }
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener { setupLogin() }
+    }
+
+    private fun setupAccessibility() {
+        binding.apply {
+            dicodingImage.contentDescription = getString(R.string.dicoding_s_logo)
+            storyLogo.contentDescription = getString(R.string.title_of_dicoding_logo)
+            loginTitle.contentDescription = getString(R.string.title_of_login)
+            loginDescription.contentDescription = getString(R.string.description_of_login)
+            emailEditTextLayout.contentDescription = getString(R.string.email_input_field)
+            passwordEditTextLayout.contentDescription = getString(R.string.password_input_field)
+            loginButton.contentDescription = getString(R.string.login_button)
+            registerButton.contentDescription = getString(R.string.register_button)
+        }
     }
 
     private fun setupAnimation() {
@@ -57,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
+        val storyLogo = ObjectAnimator.ofFloat(binding.storyLogo, View.ALPHA, 1f).setDuration(100)
         val loginTitle = ObjectAnimator.ofFloat(binding.loginTitle, View.ALPHA, 1f).setDuration(100)
         val loginDescription = ObjectAnimator.ofFloat(binding.loginDescription, View.ALPHA, 1f).setDuration(100)
         val edEmail = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
@@ -65,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
         val registerButton = ObjectAnimator.ofFloat(binding.registerButton, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
-            playSequentially(loginTitle, loginDescription, edEmail, edPassword, loginButton, registerButton)
+            playSequentially(storyLogo, loginTitle, loginDescription, edEmail, edPassword, loginButton, registerButton)
             start()
         }
     }

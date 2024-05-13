@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DicodingStoryApp</string>
+
+    <string name="story">HISTORIA</string>
+    <string name="dicoding_story">HISTORIA DE DICODING</string>
+
+    <string name="name">Nombre</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo electrónico</string>
+
+    <string name="login">INICIAR SESIÓN</string>
+    <string name="login_title">Desbloquea tu creatividad con</string>
+    <string name="login_description">¡Comienza a compartir tu historia! Por favor, inicia sesión para comenzar tu viaje.</string>
+
+    <string name="sign_up">REGISTRARSE</string>
+    <string name="signup_title">¡Únete a %1$s hoy y libera tu potencial narrativo!</string>
+    <string name="signup_description">Crea una cuenta ahora y comienza a crear tu propia narrativa. ¡Tu aventura te espera!</string>
+
+    <string name="login_to_signup">¿Aún no tienes una cuenta? %1$s y comienza a compartir tus historias con nosotros.</string>
+    <string name="signup_now">Regístrate ahora</string>
+    <string name="signup_to_login">¿Ya tienes una cuenta? %1$s y continúa tu viaje narrativo con nosotros.</string>
+    <string name="login_now">Inicia sesión ahora</string>
+
+    <string name="empty_name">Por favor, ingresa tu nombre para continuar.</string>
+    <string name="empty_email">Por favor, ingresa tu dirección de correo electrónico para continuar.</string>
+    <string name="empty_password">Por favor, ingresa tu contraseña para continuar.</string>
+
+    <string name="register_success">¡Felicidades! Tu cuenta ha sido creada exitosamente.</string>
+    <string name="register_message">Ahora puedes iniciar sesión y comenzar a explorar nuestra plataforma. \n Presiona 'Continuar' para ir a la página de inicio de sesión.</string>
+    <string name="continue_login">Continuar</string>
+
+    <string name="s_story">Historia de %1$s</string>
+    <string name="add_new_story">Agregar nueva historia</string>
+    <string name="settings">Ajustes</string>
+    <string name="logout">Cerrar sesión</string>
+
+    <string name="language">Idioma</string>
+    <string name="description">Descripción</string>
+    <string name="upload">Subir</string>
+    <string name="choose_from_gallery">Elegir de la galería</string>
+
+    <!-- Condición de éxito -->
+    <string name="successfully_logged_in">Has iniciado sesión exitosamente. ¡Bienvenido de nuevo!</string>
+    <string name="successfully_logged_out">Has cerrado sesión exitosamente. ¡Nos vemos luego!</string>
+    <string name="permission_request_granted">Solicitud de permiso concedida.</string>
+    <string name="successfully_take_pictures">Fotos tomadas exitosamente.</string>
+
+    <!-- Condición fallida -->
+    <string name="not_available">No disponible.</string>
+    <string name="story_not_available">Historia no disponible.</string>
+    <string name="failed_to_load_data">Error al cargar datos.</string>
+    <string name="no_media_selected">No se ha seleccionado ningún medio.</string>
+    <string name="permission_request_denied">Solicitud de permiso denegada.</string>
+    <string name="failed_to_show_camera">Error al mostrar la cámara.</string>
+    <string name="failed_to_take_pictures">Error al tomar fotos.</string>
+    <string name="please_select_an_image_first">Por favor, selecciona una imagen primero.</string>
+    <string name="passwords_must_have_at_least_8_characters">Las contraseñas deben tener al menos 8 caracteres.</string>
+    <string name="invalid_email_format">Formato de correo electrónico inválido.</string>
+
+    <!-- Descripción del contenido -->
+    <string name="navigation_and_actions">Navegación y acciones</string>
+    <string name="dicoding_s_logo">Logo de Dicoding</string>
+    <string name="title_of_dicoding_logo">Título del logo de Dicoding</string>
+    <string name="upload_new_story">Subir nueva historia</string>
+    <string name="no_stories_available">No hay historias disponibles</string>
+    <string name="list_of_stories">Lista de historias</string>
+    <string name="preview_of_selected_image">Vista previa de la imagen seleccionada</string>
+    <string name="open_gallery_to_select_image">Abrir galería para seleccionar imagen</string>
+    <string name="take_photo_with_camera">Tomar foto con la cámara</string>
+    <string name="enter_description_for_the_image">Ingrese una descripción para la imagen</string>
+    <string name="upload_the_selected_image">Subir la imagen seleccionada</string>
+    <string name="camera_preview">Vista previa de la cámara</string>
+    <string name="capture_image">Capturar imagen</string>
+    <string name="switch_camera">Cambiar cámara</string>
+    <string name="story_image">Imagen de la historia</string>
+    <string name="story_name">Nombre de la historia</string>
+    <string name="story_date">Fecha de la historia</string>
+    <string name="story_description">Descripción de la historia</string>
+    <string name="title_of_login">Título de inicio de sesión</string>
+    <string name="description_of_login">Descripción de inicio de sesión</string>
+    <string name="email_input_field">Campo de entrada de correo electrónico</string>
+    <string name="password_input_field">Campo de entrada de contraseña</string>
+    <string name="login_button">Botón de inicio de sesión</string>
+    <string name="register_button">Botón de registro</string>
+    <string name="title_of_signup">Título de registro</string>
+    <string name="description_of_signup">Descripción de registro</string>
+    <string name="sign_up_button">Botón de registro</string>
+    <string name="change_language">Cambiar idioma</string>
+</resources>

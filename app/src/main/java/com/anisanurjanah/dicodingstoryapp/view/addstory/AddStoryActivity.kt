@@ -69,6 +69,7 @@ class AddStoryActivity : AppCompatActivity() {
         showLoading(false)
         setupToolbar()
         setupAction()
+        setupAccessibility()
     }
 
     private fun setupToolbar() {
@@ -86,6 +87,17 @@ class AddStoryActivity : AppCompatActivity() {
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.cameraButton.setOnClickListener { startCameraX() }
         binding.uploadButton.setOnClickListener { uploadStory() }
+    }
+
+    private fun setupAccessibility() {
+        binding.apply {
+            topAppBar.contentDescription = getString(R.string.navigation_and_actions)
+            previewImageView.contentDescription = getString(R.string.preview_of_selected_image)
+            galleryButton.contentDescription = getString(R.string.open_gallery_to_select_image)
+            cameraButton.contentDescription = getString(R.string.take_photo_with_camera)
+            descriptionEditText.contentDescription = getString(R.string.enter_description_for_the_image)
+            uploadButton.contentDescription = getString(R.string.upload_the_selected_image)
+        }
     }
 
     private fun startGallery() {

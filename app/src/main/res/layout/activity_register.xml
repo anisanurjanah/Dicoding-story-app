@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_dicoding" />
+        app:srcCompat="@drawable/image_dicoding"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/storyLogo"
@@ -30,6 +31,8 @@
         android:textSize="24sp"
         android:textColor="?attr/colorPrimary"
         android:letterSpacing="0.5"
+        android:alpha="0"
+        tools:alpha="100"
         app:layout_constraintBottom_toBottomOf="@+id/dicodingImage"
         app:layout_constraintEnd_toEndOf="@+id/dicodingImage"
         app:layout_constraintStart_toStartOf="@+id/dicodingImage" />
@@ -111,11 +114,13 @@
         app:startIconDrawable="@drawable/ic_baseline_email_24"
         app:startIconTint="?attr/colorPrimary">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.anisanurjanah.dicodingstoryapp.view.customviews.EmailCustomView
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="48dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"

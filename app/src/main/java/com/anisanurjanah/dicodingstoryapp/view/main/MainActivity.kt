@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         setupStories()
         setupAction()
+        setupAccessibility()
     }
 
     private fun setupToolbar() {
@@ -66,6 +67,17 @@ class MainActivity : AppCompatActivity() {
         binding.fabButton.setOnClickListener { moveToAddNewStory() }
     }
 
+    private fun setupAccessibility() {
+        binding.apply {
+            topAppBar.contentDescription = getString(R.string.navigation_and_actions)
+            dicodingImage.contentDescription = getString(R.string.dicoding_s_logo)
+            titleTextView.contentDescription = getString(R.string.title_of_dicoding_logo)
+            rvStories.contentDescription = getString(R.string.list_of_stories)
+            fabButton.contentDescription = getString(R.string.upload_new_story)
+            storyNotAvailable.contentDescription = getString(R.string.no_stories_available)
+        }
+    }
+
     private fun setupStories() {
         val storyAdapter = StoryAdapter()
 
@@ -73,9 +85,9 @@ class MainActivity : AppCompatActivity() {
         binding.rvStories.adapter = storyAdapter
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: StoryItem?) {
+            override fun onItemClicked(items: StoryItem?) {
                 moveToDetailStory(
-                    data,
+                    items,
                     ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle()
                 )
             }

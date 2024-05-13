@@ -31,6 +31,7 @@ class CameraActivity : AppCompatActivity() {
 
         setupAction()
         startCamera()
+        setupAccessibility()
         orientationEventListener.enable()
     }
 
@@ -43,6 +44,14 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.captureImage.setOnClickListener { takePhoto() }
+    }
+
+    private fun setupAccessibility() {
+        binding.apply {
+            viewFinder.contentDescription = getString(R.string.camera_preview)
+            captureImage.contentDescription = getString(R.string.capture_image)
+            switchCamera.contentDescription = getString(R.string.switch_camera)
+        }
     }
 
     private fun startCamera() {
