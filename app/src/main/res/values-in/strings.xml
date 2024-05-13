@@ -27,7 +27,7 @@
     <string name="empty_password">Harap masukkan kata sandi Anda untuk melanjutkan.</string>
 
     <string name="register_success">Selamat! Akun Anda telah berhasil dibuat.</string>
-    <string name="register_message">Anda sekarang dapat masuk dan mulai menjelajahi platform kami. \n Tekan 'Lanjut' untuk melanjutkan ke halaman masuk.</string>
+    <string name="register_message">Anda sekarang dapat masuk dan mulai menjelajahi platform kami. \n Tekan Lanjut untuk melanjutkan ke halaman masuk.</string>
     <string name="continue_login">Lanjutkan</string>
 
     <string name="s_story">Cerita %1$s</string>

@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mainViewModel.stories.observe(this) {
+        mainViewModel.getAllStories().observe(this) {
             if (it != null) {
                 when (it) {
                     is Result.Loading -> {
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        setupStories()
+        mainViewModel.getAllStories()
     }
 
     companion object {

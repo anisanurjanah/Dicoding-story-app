@@ -1,7 +1,6 @@
 package com.anisanurjanah.dicodingstoryapp.view.main
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.anisanurjanah.dicodingstoryapp.data.Result
@@ -15,7 +14,9 @@ class MainViewModel(
     private val pref: UserPreference
 ) : ViewModel() {
 
-    val stories: LiveData<Result<List<StoryItem>>> = repository.getAllStories()
+    fun getAllStories(): LiveData<Result<List<StoryItem>>> {
+        return repository.getAllStories()
+    }
 
     fun logout() {
         viewModelScope.launch {

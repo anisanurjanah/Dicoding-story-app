@@ -27,7 +27,7 @@
     <string name="empty_password">Por favor, ingresa tu contraseña para continuar.</string>
 
     <string name="register_success">¡Felicidades! Tu cuenta ha sido creada exitosamente.</string>
-    <string name="register_message">Ahora puedes iniciar sesión y comenzar a explorar nuestra plataforma. \n Presiona 'Continuar' para ir a la página de inicio de sesión.</string>
+    <string name="register_message">Ahora puedes iniciar sesión y comenzar a explorar nuestra plataforma. \n Presiona Continuar para ir a la página de inicio de sesión.</string>
     <string name="continue_login">Continuar</string>
 
     <string name="s_story">Historia de %1$s</string>
