@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        mainViewModel.getAllStories()
+        setupStories()
     }
 
     companion object {

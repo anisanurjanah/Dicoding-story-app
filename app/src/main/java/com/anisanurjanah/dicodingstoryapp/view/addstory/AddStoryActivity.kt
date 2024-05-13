@@ -26,7 +26,6 @@ import com.anisanurjanah.dicodingstoryapp.utils.uriToFile
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
 import com.anisanurjanah.dicodingstoryapp.view.camera.CameraActivity
 import com.anisanurjanah.dicodingstoryapp.view.camera.CameraActivity.Companion.CAMERAX_RESULT
-import com.anisanurjanah.dicodingstoryapp.view.main.MainActivity
 
 class AddStoryActivity : AppCompatActivity() {
 
@@ -149,7 +148,6 @@ class AddStoryActivity : AppCompatActivity() {
 
                             val response = it.data
                             showToast(response.message.toString())
-                            startActivity(Intent(this@AddStoryActivity, MainActivity::class.java))
                             finish()
                         }
                         is Result.Error -> {
