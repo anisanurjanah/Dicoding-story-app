@@ -74,7 +74,10 @@ class MainActivity : AppCompatActivity() {
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
             override fun onItemClicked(data: StoryItem?) {
-                moveToDetailStory(data, ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle())
+                moveToDetailStory(
+                    data,
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle()
+                )
             }
         })
 
