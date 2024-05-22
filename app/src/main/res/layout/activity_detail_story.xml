@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="?attr/backgroundColor"
+    android:background="?attr/backgroundColor"
 tools:context=".view.detailstory.DetailStoryActivity">
 
 <com.google.android.material.appbar.AppBarLayout

@@ -85,7 +85,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupDescription"
         app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:startIconTint="?attr/colorPrimary">
+        app:startIconTint="?attr/colorPrimary"
+        app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameEditText"
@@ -112,7 +113,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout"
         app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:startIconTint="?attr/colorPrimary">
+        app:startIconTint="?attr/colorPrimary"
+        app:endIconMode="clear_text">
 
         <com.anisanurjanah.dicodingstoryapp.view.customviews.EmailCustomView
             android:id="@+id/emailEditText"

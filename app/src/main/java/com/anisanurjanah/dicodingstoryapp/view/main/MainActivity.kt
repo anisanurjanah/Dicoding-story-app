@@ -20,7 +20,10 @@ import com.anisanurjanah.dicodingstoryapp.databinding.ActivityMainBinding
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
 import com.anisanurjanah.dicodingstoryapp.view.addstory.AddStoryActivity
 import com.anisanurjanah.dicodingstoryapp.view.detailstory.DetailStoryActivity
+import com.anisanurjanah.dicodingstoryapp.view.history.HistoryActivity
 import com.anisanurjanah.dicodingstoryapp.view.login.LoginActivity
+import com.anisanurjanah.dicodingstoryapp.view.maps.MapsActivity
+import com.anisanurjanah.dicodingstoryapp.view.profile.ProfileActivity
 import com.anisanurjanah.dicodingstoryapp.view.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -39,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = obtainViewModel(this@MainActivity)
 
         setupToolbar()
-        setupStories()
         setupAction()
         setupAccessibility()
+        setupStories()
     }
 
     private fun setupToolbar() {
@@ -65,6 +68,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.fabButton.setOnClickListener { moveToAddNewStory() }
+
+        binding.bottomNavigation.selectedItemId = R.id.navigation_home
+        binding.bottomNavigation.setOnItemSelectedListener  { item ->
+            when (item.itemId) {
+                R.id.navigation_maps -> {
+                    moveToMaps()
+                    true
+                }
+                R.id.navigation_history -> {
+                    moveToHistory()
+                    true
+                }
+                R.id.navigation_account -> {
+                    moveToProfile()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupAccessibility() {
@@ -131,6 +153,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun moveToAddNewStory() {
         startActivity(Intent(this@MainActivity, AddStoryActivity::class.java))
+    }
+
+    private fun moveToMaps() {
+        startActivity(Intent(this@MainActivity, MapsActivity::class.java))
+    }
+
+    private fun moveToHistory() {
+        startActivity(Intent(this@MainActivity, HistoryActivity::class.java))
+    }
+
+    private fun moveToProfile() {
+        startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
     }
 
     private fun moveToSetting() {
