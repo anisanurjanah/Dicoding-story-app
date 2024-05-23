@@ -91,22 +91,9 @@
         app:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/rvStories"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="32dp"
+        app:maxImageSize="24dp"
         app:tint="?attr/colorOnSecondary"
         tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/storyNotAvailable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/story_not_available"
-        android:textSize="16sp"
-        android:textColor="?attr/colorOnPrimary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rvStories" />
 
     <View
         android:layout_width="0dp"
@@ -119,7 +106,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorOnSecondary"
+        android:background="?attr/backgroundColor"
         app:itemIconTint="?attr/colorPrimary"
         app:itemTextColor="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"

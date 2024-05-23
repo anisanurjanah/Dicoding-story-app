@@ -39,6 +39,13 @@
     <string name="description">Deskripsi</string>
     <string name="upload">Unggah</string>
     <string name="choose_from_gallery">Pilih dari galeri</string>
+    <string name="retry">Coba lagi</string>
+
+    <string name="home">Beranda</string>
+    <string name="maps">Peta</string>
+    <string name="history">Riwayat</string>
+    <string name="me">Saya</string>
+    <string name="profile">Profil</string>
 
     <!-- Kondisi berhasil -->
     <string name="successfully_logged_in">Anda berhasil masuk. Selamat datang kembali!</string>

@@ -78,10 +78,14 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.play.services.maps)
 
+    // Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.androidx.exifinterface)
+
 }

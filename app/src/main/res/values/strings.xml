@@ -38,6 +38,13 @@
     <string name="description">Description</string>
     <string name="upload">Upload</string>
     <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="retry">Retry</string>
+
+    <string name="home">Home</string>
+    <string name="maps">Maps</string>
+    <string name="history">History</string>
+    <string name="me">Me</string>
+    <string name="profile">Profile</string>
 
     <!-- Success condition -->
     <string name="successfully_logged_in">You\'ve successfully logged in. Welcome back!</string>

@@ -39,6 +39,13 @@
     <string name="description">Descripción</string>
     <string name="upload">Subir</string>
     <string name="choose_from_gallery">Elegir de la galería</string>
+    <string name="retry">Reintentar</string>
+
+    <string name="home">Inicio</string>
+    <string name="maps">Mapas</string>
+    <string name="history">Historial</string>
+    <string name="me">Yo</string>
+    <string name="profile">Perfil</string>
 
     <!-- Condición de éxito -->
     <string name="successfully_logged_in">Has iniciado sesión exitosamente. ¡Bienvenido de nuevo!</string>

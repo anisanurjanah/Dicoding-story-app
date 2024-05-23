@@ -9,6 +9,7 @@ import com.anisanurjanah.dicodingstoryapp.di.Injection
 import com.anisanurjanah.dicodingstoryapp.view.addstory.AddStoryViewModel
 import com.anisanurjanah.dicodingstoryapp.view.login.LoginViewModel
 import com.anisanurjanah.dicodingstoryapp.view.main.MainViewModel
+import com.anisanurjanah.dicodingstoryapp.view.maps.MapsViewModel
 import com.anisanurjanah.dicodingstoryapp.view.register.RegisterViewModel
 
 class ViewModelFactory private constructor(
@@ -26,6 +27,8 @@ class ViewModelFactory private constructor(
             return RegisterViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(repository, pref) as T
+        } else if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
+            return MapsViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

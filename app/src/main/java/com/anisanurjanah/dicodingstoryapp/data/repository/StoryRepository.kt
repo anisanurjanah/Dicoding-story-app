@@ -3,10 +3,15 @@ package com.anisanurjanah.dicodingstoryapp.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiService
 import com.anisanurjanah.dicodingstoryapp.data.Result
+import com.anisanurjanah.dicodingstoryapp.data.StoryPagingSource
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.GeneralResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResult
@@ -14,10 +19,10 @@ import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoriesResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiConfig
 import com.anisanurjanah.dicodingstoryapp.utils.reduceFileImage
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -74,13 +79,64 @@ class StoryRepository private constructor(
         }
     }
 
-    fun getAllStories(): LiveData<Result<List<StoryItem>>> = liveData {
+//    fun getAllStories(): LiveData<Result<List<StoryItem>>> = liveData {
+//        emit(Result.Loading)
+//        try {
+//            val token = getToken()
+//            apiService = ApiConfig.getApiService(token.toString())
+//
+//            val response = apiService.getStories()
+//            val storyItem = response.listStory ?: emptyList()
+//
+//            emit(Result.Success(storyItem.filterNotNull()))
+//        } catch (e: HttpException) {
+//            val errorBody = e.response()?.errorBody()?.string()
+//            val errorResponse = Gson().fromJson(errorBody, StoriesResponse::class.java)
+//
+//            emit(Result.Error(errorResponse.message.toString()))
+//        } catch (e: Exception) {
+//            Log.d(TAG, "getAllStories: ${e.message}")
+//
+//            emit(Result.Error(e.message.toString()))
+//        }
+//    }
+
+    fun getAllStories(coroutineScope: CoroutineScope): LiveData<Result<PagingData<StoryItem>>> = liveData {
         emit(Result.Loading)
         try {
             val token = getToken()
             apiService = ApiConfig.getApiService(token.toString())
 
-            val response = apiService.getStories()
+            val pager = Pager(
+                config = PagingConfig(
+                    pageSize = 5,
+                    enablePlaceholders = false
+                ),
+                pagingSourceFactory = { StoryPagingSource(apiService) }
+            )
+
+            val pagingDataFlow = pager.flow.cachedIn(coroutineScope)
+
+            pagingDataFlow.collect {
+                emit(Result.Success(it))
+            }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, StoriesResponse::class.java)
+            emit(Result.Error(errorResponse.message.toString()))
+        } catch (e: Exception) {
+            Log.d(TAG, "getAllStories: ${e.message}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getStoriesWithLocation(): LiveData<Result<List<StoryItem>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = getToken()
+            apiService = ApiConfig.getApiService((token.toString()))
+
+            val response = apiService.getStoriesWithLocation()
             val storyItem = response.listStory ?: emptyList()
 
             emit(Result.Success(storyItem.filterNotNull()))
@@ -90,7 +146,7 @@ class StoryRepository private constructor(
 
             emit(Result.Error(errorResponse.message.toString()))
         } catch (e: Exception) {
-            Log.d(TAG, "getAllStories: ${e.message}")
+            Log.d(TAG, "getStoriesWithLocation: ${e.message}")
 
             emit(Result.Error(e.message.toString()))
         }

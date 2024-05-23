@@ -38,7 +38,8 @@ tools:context=".view.detailstory.DetailStoryActivity">
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-    tools:srcCompat="@tools:sample/avatars" />
+    tools:srcCompat="@tools:sample/avatars"
+    tools:ignore="ContentDescription" />
 
 <TextView
     android:id="@+id/storyName"

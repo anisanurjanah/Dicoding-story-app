@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setupToolbar()
         setupAction()
         setupAccessibility()
-        setupStories()
+        setupStory()
     }
 
     private fun setupToolbar() {
@@ -96,15 +96,18 @@ class MainActivity : AppCompatActivity() {
             titleTextView.contentDescription = getString(R.string.title_of_dicoding_logo)
             rvStories.contentDescription = getString(R.string.list_of_stories)
             fabButton.contentDescription = getString(R.string.upload_new_story)
-            storyNotAvailable.contentDescription = getString(R.string.no_stories_available)
         }
     }
 
-    private fun setupStories() {
+    private fun setupStory() {
         val storyAdapter = StoryAdapter()
 
         binding.rvStories.layoutManager = LinearLayoutManager(this@MainActivity)
-        binding.rvStories.adapter = storyAdapter
+        binding.rvStories.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            }
+        )
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
             override fun onItemClicked(items: StoryItem?) {
@@ -115,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mainViewModel.getAllStories().observe(this) {
+        mainViewModel.stories.observe(this) {
             if (it != null) {
                 when (it) {
                     is Result.Loading -> {
@@ -125,16 +128,7 @@ class MainActivity : AppCompatActivity() {
                         showLoading(false)
 
                         val response = it.data
-
-                        if (response.isEmpty()) {
-                            binding.rvStories.visibility = View.GONE
-                            binding.storyNotAvailable.visibility = View.VISIBLE
-                        } else {
-                            binding.rvStories.visibility = View.VISIBLE
-                            binding.storyNotAvailable.visibility = View.GONE
-
-                            storyAdapter.submitList(response)
-                        }
+                        storyAdapter.submitData(lifecycle, response)
                     }
                     is Result.Error -> {
                         showLoading(false)
@@ -193,9 +187,10 @@ class MainActivity : AppCompatActivity() {
         )
         return ViewModelProvider(activity, factory)[MainViewModel::class.java]
     }
+
     override fun onResume() {
         super.onResume()
-        setupStories()
+        setupStory()
     }
 
     companion object {
