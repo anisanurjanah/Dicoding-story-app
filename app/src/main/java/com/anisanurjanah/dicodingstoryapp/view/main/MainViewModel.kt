@@ -11,11 +11,15 @@ import com.anisanurjanah.dicodingstoryapp.data.repository.StoryRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    repository: StoryRepository,
+    private val repository: StoryRepository,
     private val pref: UserPreference
 ) : ViewModel() {
 
-    val stories: LiveData<Result<PagingData<StoryItem>>> = repository.getAllStories(viewModelScope)
+    val stories: LiveData<Result<PagingData<StoryItem>>> by lazy {
+        repository.getAllStories(viewModelScope)
+    }
+
+//    val stories: LiveData<Result<PagingData<StoryItem>>> = repository.getAllStories(viewModelScope)
 
     fun logout() {
         viewModelScope.launch {

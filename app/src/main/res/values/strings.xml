@@ -39,6 +39,7 @@
     <string name="upload">Upload</string>
     <string name="choose_from_gallery">Choose from gallery</string>
     <string name="retry">Retry</string>
+    <string name="share_location">Share Location</string>
 
     <string name="home">Home</string>
     <string name="maps">Maps</string>
@@ -63,6 +64,8 @@
     <string name="please_select_an_image_first">Please select an image first.</string>
     <string name="passwords_must_have_at_least_8_characters">Passwords must have at least 8 characters.</string>
     <string name="invalid_email_format">Invalid email format.</string>
+    <string name="location_not_found">Location is not found. Try Again</string>
+    <string name="enable_location_first">Please enable location first to proceed</string>
 
     <!-- Content Description -->
     <string name="navigation_and_actions">Navigation and actions</string>

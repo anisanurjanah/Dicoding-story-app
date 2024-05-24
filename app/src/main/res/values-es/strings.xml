@@ -40,6 +40,7 @@
     <string name="upload">Subir</string>
     <string name="choose_from_gallery">Elegir de la galería</string>
     <string name="retry">Reintentar</string>
+    <string name="share_location">Compartir Ubicación</string>
 
     <string name="home">Inicio</string>
     <string name="maps">Mapas</string>
@@ -64,6 +65,8 @@
     <string name="please_select_an_image_first">Por favor, selecciona una imagen primero.</string>
     <string name="passwords_must_have_at_least_8_characters">Las contraseñas deben tener al menos 8 caracteres.</string>
     <string name="invalid_email_format">Formato de correo electrónico inválido.</string>
+    <string name="location_not_found">Ubicación no encontrada. Inténtalo de nuevo</string>
+    <string name="enable_location_first">Por favor, activa la ubicación primero para continuar</string>
 
     <!-- Descripción del contenido -->
     <string name="navigation_and_actions">Navegación y acciones</string>

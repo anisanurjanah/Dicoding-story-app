@@ -79,28 +79,6 @@ class StoryRepository private constructor(
         }
     }
 
-//    fun getAllStories(): LiveData<Result<List<StoryItem>>> = liveData {
-//        emit(Result.Loading)
-//        try {
-//            val token = getToken()
-//            apiService = ApiConfig.getApiService(token.toString())
-//
-//            val response = apiService.getStories()
-//            val storyItem = response.listStory ?: emptyList()
-//
-//            emit(Result.Success(storyItem.filterNotNull()))
-//        } catch (e: HttpException) {
-//            val errorBody = e.response()?.errorBody()?.string()
-//            val errorResponse = Gson().fromJson(errorBody, StoriesResponse::class.java)
-//
-//            emit(Result.Error(errorResponse.message.toString()))
-//        } catch (e: Exception) {
-//            Log.d(TAG, "getAllStories: ${e.message}")
-//
-//            emit(Result.Error(e.message.toString()))
-//        }
-//    }
-
     fun getAllStories(coroutineScope: CoroutineScope): LiveData<Result<PagingData<StoryItem>>> = liveData {
         emit(Result.Loading)
         try {
@@ -152,7 +130,7 @@ class StoryRepository private constructor(
         }
     }
 
-    fun uploadNewStory(file: File?, description: String): LiveData<Result<GeneralResponse>> = liveData {
+    fun uploadNewStory(file: File?, description: String, lat: Double?, lon: Double?): LiveData<Result<GeneralResponse>> = liveData {
         emit(Result.Loading)
         try {
             val imageFile = reduceFileImage(file!!)
@@ -167,7 +145,7 @@ class StoryRepository private constructor(
                 requestImageFile
             )
 
-            val response = apiService.uploadNewStory(multipartBody, descriptionBody)
+            val response = apiService.uploadNewStory(multipartBody, descriptionBody, lat, lon)
 
             emit((Result.Success(response)))
         } catch (e: HttpException) {

@@ -119,6 +119,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 getUserLocation()
             }
         }
+
     private fun getUserLocation() {
         if (ContextCompat.checkSelfPermission(
                 this.applicationContext,
@@ -176,14 +177,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun moveToHome() {
         startActivity(Intent(this@MapsActivity, MainActivity::class.java))
+        finish()
     }
 
     private fun moveToHistory() {
         startActivity(Intent(this@MapsActivity, HistoryActivity::class.java))
+        finish()
     }
 
     private fun moveToProfile() {
         startActivity(Intent(this@MapsActivity, ProfileActivity::class.java))
+        finish()
     }
 
     private fun showToast(message: String) {

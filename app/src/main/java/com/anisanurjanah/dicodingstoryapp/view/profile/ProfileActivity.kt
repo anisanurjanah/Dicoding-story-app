@@ -44,14 +44,17 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun moveToHome() {
         startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
+        finish()
     }
 
     private fun moveToMaps() {
         startActivity(Intent(this@ProfileActivity, MapsActivity::class.java))
+        finish()
     }
 
     private fun moveToHistory() {
         startActivity(Intent(this@ProfileActivity, HistoryActivity::class.java))
+        finish()
     }
 
 }

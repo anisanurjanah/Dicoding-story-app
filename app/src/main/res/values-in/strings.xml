@@ -40,6 +40,7 @@
     <string name="upload">Unggah</string>
     <string name="choose_from_gallery">Pilih dari galeri</string>
     <string name="retry">Coba lagi</string>
+    <string name="share_location">Bagikan Lokasi</string>
 
     <string name="home">Beranda</string>
     <string name="maps">Peta</string>
@@ -64,6 +65,8 @@
     <string name="please_select_an_image_first">Harap pilih gambar terlebih dahulu.</string>
     <string name="passwords_must_have_at_least_8_characters">Kata sandi harus memiliki minimal 8 karakter.</string>
     <string name="invalid_email_format">Format email tidak valid.</string>
+    <string name="location_not_found">Lokasi tidak ditemukan. Coba lagi</string>
+    <string name="enable_location_first">Harap aktifkan lokasi terlebih dahulu untuk melanjutkan</string>
 
     <!-- Deskripsi Konten -->
     <string name="navigation_and_actions">Navigasi dan aksi</string>

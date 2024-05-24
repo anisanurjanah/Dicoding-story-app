@@ -32,7 +32,7 @@ interface ApiService {
     @GET("stories")
     suspend fun getStories(
         @Query("page") page: Int = 1,
-        @Query("size") size: Int = 20
+        @Query("size") size: Int = 25
     ): StoriesResponse
 
     @GET("stories")
@@ -44,6 +44,8 @@ interface ApiService {
     @POST("stories")
     suspend fun uploadNewStory(
         @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("description") description: RequestBody,
+        @Part("lat") lat: Double?,
+        @Part("lon") lon: Double?
     ): GeneralResponse
 }
