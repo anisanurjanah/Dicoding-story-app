@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
+import com.anisanurjanah.dicodingstoryapp.data.remote.local.StoryDatabase
 import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiConfig
 import com.anisanurjanah.dicodingstoryapp.data.repository.StoryRepository
 import kotlinx.coroutines.flow.first
@@ -17,6 +18,7 @@ object Injection {
         val token = runBlocking { pref.getToken().first() }
         val apiService = ApiConfig.getApiService(token.toString())
 
-        return StoryRepository.getInstance(apiService, pref)
+        val storyDatabase = StoryDatabase.getDatabase(context)
+        return StoryRepository.getInstance(apiService, pref, storyDatabase)
     }
 }

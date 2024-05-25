@@ -1,13 +1,18 @@
 package com.anisanurjanah.dicodingstoryapp.data.remote.response
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity(tableName = "story")
 data class StoryItem(
+
+    @PrimaryKey
     @field:SerializedName("id")
-    val id: String? = null,
+    val id: String,
 
     @field:SerializedName("photoUrl")
     val photoUrl: String? = null,
@@ -26,4 +31,5 @@ data class StoryItem(
 
     @field:SerializedName("lat")
     val lat: Double? = null
+
 ) : Parcelable

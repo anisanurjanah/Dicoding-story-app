@@ -19,8 +19,6 @@ class MainViewModel(
         repository.getAllStories(viewModelScope)
     }
 
-//    val stories: LiveData<Result<PagingData<StoryItem>>> = repository.getAllStories(viewModelScope)
-
     fun logout() {
         viewModelScope.launch {
             pref.logout()

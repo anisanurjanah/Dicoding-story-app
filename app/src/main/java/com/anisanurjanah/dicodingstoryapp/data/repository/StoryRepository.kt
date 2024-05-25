@@ -3,6 +3,7 @@ package com.anisanurjanah.dicodingstoryapp.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -12,6 +13,8 @@ import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiService
 import com.anisanurjanah.dicodingstoryapp.data.Result
 import com.anisanurjanah.dicodingstoryapp.data.StoryPagingSource
+import com.anisanurjanah.dicodingstoryapp.data.remote.local.StoryDatabase
+import com.anisanurjanah.dicodingstoryapp.data.remote.local.StoryRemoteMediator
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.GeneralResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResult
@@ -31,7 +34,8 @@ import java.io.File
 
 class StoryRepository private constructor(
     private var apiService: ApiService,
-    private val userPreference: UserPreference
+    private val userPreference: UserPreference,
+    private val storyDatabase: StoryDatabase
 ) {
 
     private var token: String? = null
@@ -79,6 +83,7 @@ class StoryRepository private constructor(
         }
     }
 
+    @OptIn(ExperimentalPagingApi::class)
     fun getAllStories(coroutineScope: CoroutineScope): LiveData<Result<PagingData<StoryItem>>> = liveData {
         emit(Result.Loading)
         try {
@@ -90,11 +95,13 @@ class StoryRepository private constructor(
                     pageSize = 5,
                     enablePlaceholders = false
                 ),
-                pagingSourceFactory = { StoryPagingSource(apiService) }
+                remoteMediator = StoryRemoteMediator(storyDatabase, apiService),
+                pagingSourceFactory = {
+                    storyDatabase.storyDao().getAllStory()
+                }
             )
 
             val pagingDataFlow = pager.flow.cachedIn(coroutineScope)
-
             pagingDataFlow.collect {
                 emit(Result.Success(it))
             }
@@ -164,9 +171,12 @@ class StoryRepository private constructor(
         private const val TAG = "StoryRepository"
         private var instance: StoryRepository? = null
 
-        fun getInstance(apiService: ApiService, userPreference: UserPreference): StoryRepository {
+        fun getInstance(apiService: ApiService,
+                        userPreference: UserPreference,
+                        storyDatabase: StoryDatabase
+        ): StoryRepository {
             return instance ?: synchronized(this) {
-                instance ?: StoryRepository(apiService, userPreference).also { instance = it }
+                instance ?: StoryRepository(apiService, userPreference, storyDatabase).also { instance = it }
             }
         }
     }
