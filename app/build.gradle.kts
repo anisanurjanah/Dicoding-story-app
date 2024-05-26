@@ -102,6 +102,8 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.inline)
 
+    implementation(libs.androidx.espresso.idling.resource)
+
     implementation(libs.androidx.exifinterface)
 
 }

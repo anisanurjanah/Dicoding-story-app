@@ -12,9 +12,8 @@ import com.anisanurjanah.dicodingstoryapp.data.pref.UserPreference
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.data.remote.retrofit.ApiService
 import com.anisanurjanah.dicodingstoryapp.data.Result
-import com.anisanurjanah.dicodingstoryapp.data.StoryPagingSource
-import com.anisanurjanah.dicodingstoryapp.data.remote.local.StoryDatabase
-import com.anisanurjanah.dicodingstoryapp.data.remote.local.StoryRemoteMediator
+import com.anisanurjanah.dicodingstoryapp.data.local.StoryDatabase
+import com.anisanurjanah.dicodingstoryapp.data.local.StoryRemoteMediator
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.GeneralResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResponse
 import com.anisanurjanah.dicodingstoryapp.data.remote.response.LoginResult
@@ -92,8 +91,7 @@ class StoryRepository private constructor(
 
             val pager = Pager(
                 config = PagingConfig(
-                    pageSize = 5,
-                    enablePlaceholders = false
+                    pageSize = 5
                 ),
                 remoteMediator = StoryRemoteMediator(storyDatabase, apiService),
                 pagingSourceFactory = {
@@ -122,9 +120,9 @@ class StoryRepository private constructor(
             apiService = ApiConfig.getApiService((token.toString()))
 
             val response = apiService.getStoriesWithLocation()
-            val storyItem = response.listStory ?: emptyList()
+            val storyItem = response.listStory
 
-            emit(Result.Success(storyItem.filterNotNull()))
+            emit(Result.Success(storyItem))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, StoriesResponse::class.java)

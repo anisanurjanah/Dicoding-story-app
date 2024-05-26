@@ -32,10 +32,11 @@ coreTesting = "2.2.0"
 kotlinxCoroutinesTest = "1.7.3"
 mockitoCore = "5.6.0"
 mockitoInline = "5.2.0"
-roomKtx = "2.4.0-rc01"
-roomCompiler = "2.4.0-rc01"
-roomPaging = "2.4.0-rc01"
+roomKtx = "2.6.1"
+roomCompiler = "2.6.1"
+roomPaging = "2.6.1"
 googleDevtoolsKsp = "1.9.10-1.0.13"
+espressoIdlingResource = "3.5.1"
 
 [libraries]
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraLifecycle" }
@@ -72,6 +73,7 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomPaging" }
+androidx-espresso-idling-resource = { group = "androidx.test.espresso", name = "espresso-idling-resource", version.ref = "espressoIdlingResource" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

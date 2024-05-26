@@ -37,8 +37,9 @@ class CameraActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.switchCamera.setOnClickListener {
-            cameraSelector = if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
-            else CameraSelector.DEFAULT_BACK_CAMERA
+            cameraSelector =
+                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
+                else CameraSelector.DEFAULT_BACK_CAMERA
 
             startCamera()
         }
@@ -98,6 +99,7 @@ class CameraActivity : AppCompatActivity() {
                     finish()
                     showToast(getString(R.string.successfully_take_pictures))
                 }
+
                 override fun onError(exc: ImageCaptureException) {
                     showToast(getString(R.string.failed_to_take_pictures))
                     Log.e(TAG, "onError: ${exc.message}")

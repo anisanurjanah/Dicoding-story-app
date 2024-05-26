@@ -19,18 +19,24 @@ class ViewModelFactory private constructor(
     ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(repository, pref) as T
-        } else if (modelClass.isAssignableFrom(AddStoryViewModel::class.java)) {
-            return AddStoryViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return RegisterViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(repository, pref) as T
-        } else if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
-            return MapsViewModel(repository) as T
+        when {
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                return MainViewModel(repository, pref) as T
+            }
+            modelClass.isAssignableFrom(AddStoryViewModel::class.java) -> {
+                return AddStoryViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                return RegisterViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                return LoginViewModel(repository, pref) as T
+            }
+            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+                return MapsViewModel(repository) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
-        throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 
     companion object {

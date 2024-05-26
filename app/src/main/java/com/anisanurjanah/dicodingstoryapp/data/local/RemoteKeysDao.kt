@@ -1,4 +1,4 @@
-package com.anisanurjanah.dicodingstoryapp.data.remote.local
+package com.anisanurjanah.dicodingstoryapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

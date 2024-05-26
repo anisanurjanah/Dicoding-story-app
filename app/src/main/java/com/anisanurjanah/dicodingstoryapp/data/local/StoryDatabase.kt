@@ -1,4 +1,4 @@
-package com.anisanurjanah.dicodingstoryapp.data.remote.local
+package com.anisanurjanah.dicodingstoryapp.data.local
 
 import android.content.Context
 import androidx.room.Database
@@ -8,7 +8,7 @@ import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 
 @Database(
     entities = [StoryItem::class, RemoteKeys::class],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 abstract class StoryDatabase : RoomDatabase() {
