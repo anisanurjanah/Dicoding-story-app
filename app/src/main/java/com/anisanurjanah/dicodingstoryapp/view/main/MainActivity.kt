@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -19,7 +18,7 @@ import com.anisanurjanah.dicodingstoryapp.data.remote.response.StoryItem
 import com.anisanurjanah.dicodingstoryapp.databinding.ActivityMainBinding
 import com.anisanurjanah.dicodingstoryapp.view.ViewModelFactory
 import com.anisanurjanah.dicodingstoryapp.view.addstory.AddStoryActivity
-import com.anisanurjanah.dicodingstoryapp.view.detailstory.DetailStoryActivity
+import com.anisanurjanah.dicodingstoryapp.view.detailstory.DetailStoryDialogFragment
 import com.anisanurjanah.dicodingstoryapp.view.history.HistoryActivity
 import com.anisanurjanah.dicodingstoryapp.view.login.LoginActivity
 import com.anisanurjanah.dicodingstoryapp.view.maps.MapsActivity
@@ -112,10 +111,10 @@ class MainActivity : AppCompatActivity() {
 
         storyAdapter.setOnItemClickCallback(object : StoryAdapter.OnItemClickCallback {
             override fun onItemClicked(items: StoryItem?) {
-                moveToDetailStory(
-                    items,
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity).toBundle()
-                )
+                items?.let {
+                    val dialogFragment = DetailStoryDialogFragment.newInstance(it)
+                    dialogFragment.show(supportFragmentManager, "DetailStoryDialogFragment")
+                }
             }
         })
 
@@ -138,12 +137,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun moveToDetailStory(item: StoryItem?, bundle: Bundle?) {
-        val intent = Intent(this@MainActivity, DetailStoryActivity::class.java)
-        intent.putExtra(DetailStoryActivity.EXTRA_RESULT, item)
-        startActivity(intent, bundle)
     }
 
     private fun moveToAddNewStory() {

@@ -44,9 +44,6 @@
             android:name=".view.addstory.AddStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.detailstory.DetailStoryActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity

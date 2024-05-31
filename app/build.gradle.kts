@@ -65,7 +65,7 @@ dependencies {
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.logging.interceptor)
 
-    //Room database
+    // Room database
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
@@ -82,7 +82,6 @@ dependencies {
 
     // DataStore
     implementation(libs.androidx.datastore.preferences)
-    implementation(libs.play.services.maps)
 
     // Paging
     implementation(libs.androidx.paging.runtime.ktx)
