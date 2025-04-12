@@ -1,12 +1,13 @@
-# Dicoding Story App
+<h1 align="center">Dicoding Story App</h1>
 
-Android App with User Authentication, Story Upload, Maps Integration, and Pagination  
-Built during a Mobile Development Course.
+<p align="center">
+  <i>Android App with User Authentication, Story Upload, Maps Integration, and Pagination</i><br/>
+  Built during a Mobile Development Course.
+</p>
 
 ## 📌 Description
 
-This project is an Android application developed using Kotlin as part of an Android Learning Path module on Dicoding.  
-The app allows users to register, log in, post stories with images, view story locations on a map, and explore stories with pagination support.
+This project is an Android application developed using Kotlin as part of an Android Learning Path module on Dicoding. The app allows users to register, log in, post stories with images, view story locations on a map, and explore stories with pagination support.
 
 ## ⚙️ Tech Stack
 
