@@ -27,6 +27,7 @@ This project is an Android application developed using Kotlin as part of an Andr
 - Paginated story feed using Paging 3
 - Story detail view
 - Map integration to view story locations
+- Dark mode support
 
 ## 🔐 Authentication
 
@@ -43,6 +44,12 @@ To run this project locally:
 
 ## 📸 Screenshots
 
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/b2b3ca7c-4612-4cab-b186-e3ee4de3130c" width="20%"/>
+    <img src="https://github.com/user-attachments/assets/11dea547-6d42-43a8-9685-cc3d5715625f" width="20%"/>
+    <img src="https://github.com/user-attachments/assets/a96001ee-c214-4f44-b95b-34d29bbbde21" width="20%"/>
+    <img src="https://github.com/user-attachments/assets/ba32287e-7088-4827-b683-f583ccf8f5b8" width="20%"/>
+</p>
 
 ## 🎓 Acknowledgement
 
