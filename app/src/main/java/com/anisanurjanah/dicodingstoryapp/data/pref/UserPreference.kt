@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.map
 
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
     suspend fun login() {
+        //testing fork
         dataStore.edit { preferences ->
             preferences[STATE_KEY] = true
         }
